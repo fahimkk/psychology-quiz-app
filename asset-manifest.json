@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/psychology-quiz-app/static/css/main.1737efdd.css",
-    "main.js": "/psychology-quiz-app/static/js/main.a267e016.js",
+    "main.css": "/psychology-quiz-app/static/css/main.46be4df5.css",
+    "main.js": "/psychology-quiz-app/static/js/main.5db229f1.js",
     "static/js/787.b55055f6.chunk.js": "/psychology-quiz-app/static/js/787.b55055f6.chunk.js",
     "index.html": "/psychology-quiz-app/index.html",
-    "main.1737efdd.css.map": "/psychology-quiz-app/static/css/main.1737efdd.css.map",
-    "main.a267e016.js.map": "/psychology-quiz-app/static/js/main.a267e016.js.map",
+    "main.46be4df5.css.map": "/psychology-quiz-app/static/css/main.46be4df5.css.map",
+    "main.5db229f1.js.map": "/psychology-quiz-app/static/js/main.5db229f1.js.map",
     "787.b55055f6.chunk.js.map": "/psychology-quiz-app/static/js/787.b55055f6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1737efdd.css",
-    "static/js/main.a267e016.js"
+    "static/css/main.46be4df5.css",
+    "static/js/main.5db229f1.js"
   ]
 }
