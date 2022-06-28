@@ -28,7 +28,7 @@ function QuizSection(props) {
 	const [submited, setSubmited] = React.useState(false)
 
 	React.useEffect(()=>{
-		if(!props.attendedSections.includes(props.section)){
+		if(!(props.section in props.attendedSections)){
 			answers = {}
 			setQuestions(QUESTIONS[props.section])
 			setSubmited(false)
@@ -43,6 +43,20 @@ function QuizSection(props) {
 			answers[questions[qIndex-1]] = answer
 			setAnswer(null)
 		}
+		if(questions.length === qIndex && !submited){
+			const score = Object.values(answers).reduce((total, item) => {
+				let val = item==='ALWAYS'?2:(item==='SOMETIMES'?1:0)
+				return total+val
+			},0)
+			setSubmited(true)
+			props.setAttendedSections(prev=> {
+				return{
+					...prev,
+					[props.section]: score
+				}
+			})
+			props.updateData(answers)
+		}
 	},[qIndex])
 
 
@@ -50,18 +64,18 @@ function QuizSection(props) {
 		if(!answer){
 			return
 		}
-		if(questions.length === qIndex+1 && !submited){
-			setSubmited(true)
-			props.setAttendedSections(prev=> [...prev,props.section])
-			props.updateData(answers)
-		}
+		
 		setQIndex(prev=>prev+1)
 	}
   	return (
-		<div className='text-center md:mx-56 mx-5'>
-			{submited ?
+		<div className='text-center md:mx-56 mx-5 '>
+			{submited && props.section && props.attendedSections && props.attendedSections[props.section] ?
 			<div className='md:text-2xl text:xl font-bold pt-10'>
-				Thank You 
+				{props.attendedSections[props.section] >= 4 && props.section[0]==="O"? "Over Responsive"
+				:(props.attendedSections[props.section] >= 4 && props.section[0]==="U"? "Under Responsive"
+				:(props.attendedSections[props.section] <= 2 && props.section[0]==="O"? "Not Over Responsive"
+				:(props.attendedSections[props.section] <= 2 && props.section[0]==="U"? "Not Under Responsive"
+				:null)))}
 			</div>
 			:
 			<div className=''>

@@ -7,8 +7,8 @@ import AppBar from './components/AppBar';
 
 
 function App() {
-  const [selectedSection, setSelectedSection] = React.useState(null);
-  const [attendedSections, setAttendedSections] = React.useState([]);
+  const [selectedSection, setSelectedSection] = React.useState("OverVisual");
+  const [attendedSections, setAttendedSections] = React.useState({});
   const updateData = (result)=>{
     let data = reactLocalStorage.getObject('survayData');
     if(data && data[selectedSection]){
@@ -22,6 +22,7 @@ function App() {
     data = reactLocalStorage.getObject('survayData');
     console.log("Total Data: ", data)
   }
+  console.log("app: ", selectedSection)
   return (
     <div className='bg-gray-200 h-screen'>
       <AppBar/>
@@ -30,28 +31,13 @@ function App() {
           onClick={setSelectedSection}
           selectedSection={selectedSection}
         />
-        <div className='pt-10 border-t-2 border-gray-100 text-center'>
-          {selectedSection ?
+        <div className='pt-10 py-14 border-t-2 bg-gray-200 border-gray-100 text-center'>
             <QuizSection
               section={selectedSection}
               attendedSections={attendedSections}
               setAttendedSections={setAttendedSections}
               updateData={updateData}
             />
-            :
-            <div className='mt-10'>
-              <h1 className='text-4xl font-bold'>
-                Welcome
-
-              </h1>
-              <div
-                className='mt-5 text-blue-500 hover:text-blue-700 text-xl'
-                onClick={()=>setSelectedSection('OverVisual')}
-              >
-                Start Quiz
-              </div>
-            </div>
-          }
         </div>
       </div>
     </div>
